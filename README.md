@@ -1,3 +1,1 @@
-# ContourNet
-
 Coming soon...
