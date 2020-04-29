@@ -76,6 +76,7 @@ Put bo.json to ic15_evaluate/, then run
 |  This implementation 	|    84.0   	|     90.1   	|    87.0   	| 
 
 ### Train our model on IC15
+As mentioned in our paper, we only use offical training images to train our model, data augmentation includes random crop, rotate etc.
 #### Step 1:
 Run
 ```bash 
