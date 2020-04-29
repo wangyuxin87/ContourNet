@@ -65,7 +65,7 @@ Put bo.json to ic15_evaluate/, then run
 ```bash 
    cd ic15_evaluate
    conda deactivate
-   pip2 install polygon 
+   pip2 install polygon2
    conda install zip
    python2 eval_ic15
 ```
