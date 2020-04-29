@@ -47,7 +47,7 @@ We recommend you to use Anaconda [BaiduYun Link](https://pan.baidu.com/s/1_J9INU
 You need to modify ```maskrcnn_benchmark/config/paths_catalog.py``` to point to the location where your dataset is stored.
 
 #### step 3
-Download [ResNet50 model (ImageNet)](https://pan.baidu.com/s/1-42b3MRQ5T7t7SPC8fUb2g)(passward:5di1) and put it in ```ContourNet/```. 
+Download [ResNet50 model (ImageNet)](https://pan.baidu.com/s/1nYePd4BgsBjhToeD2y1RbQ)(passward:edt8) and put it in ```ContourNet/```. 
 
 ### Test IC15
 #### Test with our [proposed model](https://pan.baidu.com/s/15xHgwUeMs-EYfHiBvNH0MQ) (password:g49o)
