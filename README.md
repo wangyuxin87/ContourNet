@@ -55,7 +55,7 @@ Put the folder in
 ```bash 
    output/.
 ```
-You need to set the resolution to 1200x2000 in ```maskrcnn_benchmark/data/transformstransforms.py``` (line 48 to 51).
+You need to set the resolution to 1200x2000 in ```maskrcnn_benchmark/data/transformstransforms.py``` (line 50 to 52).
 Then run
 ```bash 
    bash test_contour.sh
@@ -83,7 +83,7 @@ Run
    bash train_contour.sh
 ```
 #### Step 2:
-   Change the ROTATE_PROB_TRAIN to 0.3 and ROTATE_DEGREE to 10 in ```config/r50_baseline.yaml``` (corresponding modification also needs to be done in ```maskrcnn_benchmark/data/transformstransforms.py``` from line 311 to 316), then finetune the model for more 10500 steps (lr starts from 2.5e-4 and dot 0.1 when step = [5k,10k]).
+   Change the ROTATE_PROB_TRAIN to 0.3 and ROTATE_DEGREE to 10 in ```config/r50_baseline.yaml``` (corresponding modification also needs to be done in ```maskrcnn_benchmark/data/transformstransforms.py``` from line 312 to 317), then finetune the model for more 10500 steps (lr starts from 2.5e-4 and dot 0.1 when step = [5k,10k]).
 
 ## Citation
 If you find our method useful for your reserach, please cite
