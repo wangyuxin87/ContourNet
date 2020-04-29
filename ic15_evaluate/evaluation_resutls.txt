@@ -1,0 +1,15 @@
+========= 0.51:
+('recall: ', 0.779, 'precision: ', 0.866, 'hmean: ', 0.82)
+('tiouRecall:', 0.558, 'tiouPrecision:', 0.653, 'tiouHmean:', 0.602)
+========= 0.52:
+('recall: ', 0.779, 'precision: ', 0.866, 'hmean: ', 0.82)
+('tiouRecall:', 0.558, 'tiouPrecision:', 0.653, 'tiouHmean:', 0.602)
+========= 0.53:
+('recall: ', 0.777, 'precision: ', 0.868, 'hmean: ', 0.82)
+('tiouRecall:', 0.557, 'tiouPrecision:', 0.654, 'tiouHmean:', 0.602)
+========= 0.54:
+('recall: ', 0.775, 'precision: ', 0.869, 'hmean: ', 0.819)
+('tiouRecall:', 0.556, 'tiouPrecision:', 0.655, 'tiouHmean:', 0.601)
+========= 0.55:
+('recall: ', 0.774, 'precision: ', 0.87, 'hmean: ', 0.819)
+('tiouRecall:', 0.555, 'tiouPrecision:', 0.656, 'tiouHmean:', 0.601)
