@@ -76,7 +76,7 @@ Put bo.json to ic15_evaluate/, then run
 |  This implementation 	|    84.0   	|     90.1   	|    87.0   	| 
 
 ### Train our model on IC15
-As mentioned in our paper, we only use offical training images to train our model, data augmentation includes random crop, rotate etc. There are 2 strategies to train the model:1) use the [ResNet50 model (ImageNet)](https://pan.baidu.com/s/1nYePd4BgsBjhToeD2y1RbQ)(passward:edt8), this is provided by [Yuliang](https://github.com/Yuliang-Liu/Box_Discretization_Network), which is ONLY an ImageNet Model With a few iterations on ic15 training data for a stable initialization.2) Use model only pre-trained on ImageNet(modify the WEIGHT to ```catalog://ImageNetPretrained/MSRA/R-50``` in ```config/r50_baseline.yaml```). In this repository, we use the first one to train the model on this dataset.
+As mentioned in our paper, we only use offical training images to train our model, data augmentation includes random crop, rotate etc. There are 2 strategies to initialize the parameters in the backbone:1) use the [ResNet50 model (ImageNet)](https://pan.baidu.com/s/1nYePd4BgsBjhToeD2y1RbQ)(passward:edt8), this is provided by [Yuliang](https://github.com/Yuliang-Liu/Box_Discretization_Network), which is ONLY an ImageNet Model With a few iterations on ic15 training data for a stable initialization.2) Use model only pre-trained on ImageNet(modify the WEIGHT to ```catalog://ImageNetPretrained/MSRA/R-50``` in ```config/r50_baseline.yaml```). In this repository, we use the first one to train the model on this dataset.
 #### Step 1:
 Run
 ```bash 
