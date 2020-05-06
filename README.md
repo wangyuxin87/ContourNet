@@ -53,7 +53,7 @@ You need to modify ```maskrcnn_benchmark/config/paths_catalog.py``` to point to 
 Download [ResNet50 model (ImageNet)-BAIDU](https://pan.baidu.com/s/1nYePd4BgsBjhToeD2y1RbQ)(passward:edt8) or [ResNet50 model(ImageNet)-Drive](https://drive.google.com/file/d/1GZRktoRS4hoXmsCrucl3liLyMzl56WK7/view?usp=sharing) and put it in ```ContourNet/```. 
 
 ### Test IC15
-#### Test with our [proposed model-BAIDU](https://pan.baidu.com/s/15xHgwUeMs-EYfHiBvNH0MQ)(password:g49o) or [proposed meodel-Drive](https://drive.google.com/drive/folders/10iJcEuR90tpkkyoIJ4Zq5r2xjwUWYYbc?usp=sharing)
+#### Test with our [proposed model-BAIDU](https://pan.baidu.com/s/15xHgwUeMs-EYfHiBvNH0MQ)(password:g49o) or [proposed model-Drive](https://drive.google.com/drive/folders/10iJcEuR90tpkkyoIJ4Zq5r2xjwUWYYbc?usp=sharing)
 Put the folder in 
 ```bash 
    output/.
