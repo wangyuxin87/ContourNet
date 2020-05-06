@@ -14,7 +14,7 @@ This is a pytorch-based implementation for paper [ContourNet](https://arxiv.org/
 
 ## Requirements
 
-We recommend you to use Anaconda [BaiduYun Link](https://pan.baidu.com/s/1_J9INU-UpiT43qormibAuw)(passward:1y3v) to manage your libraries.
+We recommend you to use Anaconda [BaiduYun Link](https://pan.baidu.com/s/1_J9INU-UpiT43qormibAuw)(passward:1y3v) or [Geogle Drive](https://drive.google.com/file/d/1H64lTpR3xzlSRfUxfZa4dOhAYZJcO7RU/view?usp=sharing) to manage your libraries.
 
 
 ### Step-by-step install
@@ -39,7 +39,7 @@ We recommend you to use Anaconda [BaiduYun Link](https://pan.baidu.com/s/1_J9INU
 ## Experiment on IC15 dataset
 ### Data preparing 
 #### step 1
-   Prepare data follow COCO format or you can download our [IC15dataset](https://pan.baidu.com/s/1GbF0PnWDKw3qn2o2XgpB7Q) (passward:ect5), and unzip it in 
+   Prepare data follow COCO format or you can download our [IC15dataset-BAIDU](https://pan.baidu.com/s/1GbF0PnWDKw3qn2o2XgpB7Q) (passward:ect5) or [Geogle Drive](https://drive.google.com/file/d/1ZWRQWJwhydoCsqdNlX80y94cKQedUywO/view?usp=sharing), and unzip it in 
 ```bash
    datasets/.
 ```
@@ -47,10 +47,10 @@ We recommend you to use Anaconda [BaiduYun Link](https://pan.baidu.com/s/1_J9INU
 You need to modify ```maskrcnn_benchmark/config/paths_catalog.py``` to point to the location where your dataset is stored.
 
 #### step 3
-Download [ResNet50 model (ImageNet)](https://pan.baidu.com/s/1nYePd4BgsBjhToeD2y1RbQ)(passward:edt8) and put it in ```ContourNet/```. 
+Download [ResNet50 model (ImageNet)-BAIDU](https://pan.baidu.com/s/1nYePd4BgsBjhToeD2y1RbQ)(passward:edt8) or [ResNet50 model(ImageNet)-Drive](https://drive.google.com/file/d/1GZRktoRS4hoXmsCrucl3liLyMzl56WK7/view?usp=sharing) and put it in ```ContourNet/```. 
 
 ### Test IC15
-#### Test with our [proposed model](https://pan.baidu.com/s/15xHgwUeMs-EYfHiBvNH0MQ) (password:g49o)
+#### Test with our [proposed model-BAIDU](https://pan.baidu.com/s/15xHgwUeMs-EYfHiBvNH0MQ)(password:g49o) or [proposed meodel](https://drive.google.com/drive/folders/10iJcEuR90tpkkyoIJ4Zq5r2xjwUWYYbc?usp=sharing)
 Put the folder in 
 ```bash 
    output/.
