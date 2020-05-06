@@ -12,6 +12,9 @@ This is a pytorch-based implementation for paper [ContourNet](https://arxiv.org/
 - [ ] Experiment on more datasets
 - [ ] re-organize and clean the parameters
 
+## Updates
+2020/5/6 We upload the models on Drive.
+
 ## Requirements
 
 We recommend you to use Anaconda [BaiduYun Link](https://pan.baidu.com/s/1_J9INU-UpiT43qormibAuw)(passward:1y3v) or [Geogle Drive](https://drive.google.com/file/d/1H64lTpR3xzlSRfUxfZa4dOhAYZJcO7RU/view?usp=sharing) to manage your libraries.
