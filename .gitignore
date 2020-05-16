@@ -1,0 +1,10 @@
+output
+**/__pycache__
+build
+.idea
+**egg-info
+ic15_evaluate/ch4_gt
+datasets
+Res50_imagenet.pth
+maskrcnn_benchmark/*.so
+maskrcnn_benchmark.egg-info/SOURCES.txt

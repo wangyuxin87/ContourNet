@@ -244,7 +244,7 @@ def boundary_to_mask(bo_x, bo_y, name, num):
 def mask_to_roRect(mask, img_shape):
     ## convert mask into rotated rect
     e = mask[0, :, :]
-    _, countours, hier = cv2.findContours(e.clone().numpy(), cv2.RETR_CCOMP, cv2.CHAIN_APPROX_NONE)  # Aarlog
+    countours, hier = cv2.findContours(e.clone().numpy(), cv2.RETR_CCOMP, cv2.CHAIN_APPROX_NONE)  # Aarlog
     if len(countours) == 0:
         return np.zeros((1, 8))
     t_c = countours[0].copy()
