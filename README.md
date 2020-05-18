@@ -73,7 +73,7 @@ Put bo.json to ic15_evaluate/, then run
    python2 eval_ic15
 ```
 #### Results on IC15
-|        Model       	| precision 	| recall 	| F-measure 	|
+|        Model       	| recall 	| precision 	| F-measure 	|
 |:------------------:	|:---------:	|:------:	|:---------:	|
 |      Paper   	|    86.1   	|     87.6   	|    86.9   	|   
 |  This implementation 	|    84.0   	|     90.1   	|    87.0   	| 
