@@ -59,10 +59,10 @@ We recommend you to use Anaconda [BaiduYun Link](https://pan.baidu.com/s/1_J9INU
 You need to modify ```maskrcnn_benchmark/config/paths_catalog.py``` to point to the location where your dataset is stored.
 
 #### step 3
-Download [ResNet50 model (ImageNet)-BAIDU](https://pan.baidu.com/s/1nYePd4BgsBjhToeD2y1RbQ)(passward:edt8) or [ResNet50 model(ImageNet)-Drive](https://drive.google.com/file/d/1GZRktoRS4hoXmsCrucl3liLyMzl56WK7/view?usp=sharing) and put it in ```ContourNet/```. 
+Download ResNet50 model [BAIDU](https://pan.baidu.com/s/1nYePd4BgsBjhToeD2y1RbQ)(passward:edt8) or [Drive](https://drive.google.com/file/d/1GZRktoRS4hoXmsCrucl3liLyMzl56WK7/view?usp=sharing) and put it in ```ContourNet/```. 
 
 ### Test IC15
-#### Test with our [proposed model-BAIDU](https://pan.baidu.com/s/15xHgwUeMs-EYfHiBvNH0MQ)(password:g49o) or [proposed model-Drive](https://drive.google.com/drive/folders/10iJcEuR90tpkkyoIJ4Zq5r2xjwUWYYbc?usp=sharing)
+#### Test with our proposed model [BAIDU](https://pan.baidu.com/s/15xHgwUeMs-EYfHiBvNH0MQ)(password:g49o) or [Drive](https://drive.google.com/drive/folders/10iJcEuR90tpkkyoIJ4Zq5r2xjwUWYYbc?usp=sharing)
 Put the folder in 
 ```bash 
    output/.
@@ -83,7 +83,7 @@ Put bo.json to ic15_evaluate/, then run
 ```
 
 ### Train our model on IC15
-As mentioned in our paper, we only use offical training images to train our model, data augmentation includes random crop, rotate etc. There are 2 strategies to initialize the parameters in the backbone:1) use the [ResNet50 model (ImageNet)-BAIDU](https://pan.baidu.com/s/1nYePd4BgsBjhToeD2y1RbQ)(passward:edt8) or [ResNet50 model (ImageNet)-Drive](https://drive.google.com/file/d/1GZRktoRS4hoXmsCrucl3liLyMzl56WK7/view?usp=sharing), this is provided by [Yuliang](https://github.com/Yuliang-Liu/Box_Discretization_Network), which is ONLY an ImageNet Model With a few iterations on ic15 training data for a stable initialization.2) Use model only pre-trained on ImageNet(modify the WEIGHT to ```catalog://ImageNetPretrained/MSRA/R-50``` in ```config/ic15/r50_baseline.yaml```). In this repository, we use the first one to train the model on this dataset.
+As mentioned in our paper, we only use offical training images to train our model, data augmentation includes random crop, rotate etc. There are 2 strategies to initialize the parameters in the backbone:1) use the ResNet50 model (ImageNet)[BAIDU](https://pan.baidu.com/s/1nYePd4BgsBjhToeD2y1RbQ)(passward:edt8) or [Drive](https://drive.google.com/file/d/1GZRktoRS4hoXmsCrucl3liLyMzl56WK7/view?usp=sharing), this is provided by [Yuliang](https://github.com/Yuliang-Liu/Box_Discretization_Network), which is ONLY an ImageNet Model With a few iterations on ic15 training data for a stable initialization.2) Use model only pre-trained on ImageNet(modify the WEIGHT to ```catalog://ImageNetPretrained/MSRA/R-50``` in ```config/ic15/r50_baseline.yaml```). In this repository, we use the first one to train the model on this dataset.
 #### Step 1:
 Run
 ```bash 
@@ -102,7 +102,7 @@ Run
 #### step 2
    You need to modify ```maskrcnn_benchmark/config/paths_catalog.py``` to point to the location where your dataset is stored.
 ### Test CTW
-#### Test with our [proposed model-Drive](https://drive.google.com/drive/folders/1vEaYiS7Qxvhj6rdqTOATT-ke86FqGHnF?usp=sharing)
+#### Test with our proposed model [Drive](https://drive.google.com/drive/folders/1vEaYiS7Qxvhj6rdqTOATT-ke86FqGHnF?usp=sharing)
 Put the folder in 
 ```bash 
    output/.
