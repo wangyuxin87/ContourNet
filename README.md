@@ -13,8 +13,10 @@ This is a pytorch-based implementation for paper [ContourNet](https://arxiv.org/
 - [ ] re-organize and clean the parameters
 
 ## Updates
+```bash
 2020/5/6 We upload the models on Drive.
-
+2020/6/11 We update the experiment for CTW-1500 and further detail some training settings.
+```
 ## Requirements
 
 We recommend you to use Anaconda [BaiduYun](https://pan.baidu.com/s/1_J9INU-UpiT43qormibAuw)(passward:1y3v) or [Drive](https://drive.google.com/file/d/1H64lTpR3xzlSRfUxfZa4dOhAYZJcO7RU/view?usp=sharing) to manage your libraries.
