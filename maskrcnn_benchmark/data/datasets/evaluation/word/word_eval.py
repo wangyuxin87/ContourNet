@@ -431,8 +431,9 @@ def prepare_for_boundary_segmentation(predictions, dataset):
             rects = [mask_to_roRect(mask, [image_height, image_width]) for mask in masks]
         if 'CTW' in cfg.DATASETS.TEST[0]:
             contours = [mask_to_contours(mask, [image_height, image_width]) for mask in masks]
-            write_result_as_txt(image_name, contours, './output_txt/detection_CTW')
-            # for visualization
+            # output for evaluation
+            write_result_as_txt(image_name, contours, 'path to output detection results')
+            # visualization
             if cfg.DATASETS.Test_Visual:
                 im_write = cv2.imread(
                     'path to ctw test image (must same to paths_catalog.py)' + im_w_name)[:, :,::-1]
@@ -464,6 +465,7 @@ def prepare_for_boundary_segmentation(predictions, dataset):
                 for i in keep:
                     new_esd.append(esd[i])
                 coco_results.extend(new_esd)
+                # visualization
                 if cfg.DATASETS.Test_Visual:
                     im_write = cv2.imread(
                         'path to ic15 test image (must same to paths_catalog.py)' + im_w_name)[
