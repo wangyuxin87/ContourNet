@@ -9,7 +9,7 @@ This is a pytorch-based implementation for paper [ContourNet](https://arxiv.org/
 - [x] Trained models
 - [x] Document for testing and training
 - [x] Evaluation
-- [ ] Experiment on more datasets
+- [x] Experiment on more datasets
 - [ ] re-organize and clean the parameters
 
 ## Updates
