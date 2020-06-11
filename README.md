@@ -106,6 +106,13 @@ Then run
 ```bash 
    bash test_contour.sh
 ```
+### Evaluate
+Run
+```bash 
+   cd ctw_eval
+   python eval_ctw1500.py
+```
+
 ### Train our model on CTW
 Run
 ```bash 
