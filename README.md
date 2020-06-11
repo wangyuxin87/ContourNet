@@ -38,6 +38,13 @@ We recommend you to use Anaconda [BaiduYun Link](https://pan.baidu.com/s/1_J9INU
   cd ContourNet
   python setup.py build develop
 ```
+#### Results
+|        Dataset       	||        Model       	| recall 	| precision 	| F-measure 	|
+|:------------------: ||:------------------:	|:---------:	|:------:	|:---------:	|
+|        ic15       	||      Paper   	|    86.1   	|     87.6   	|    86.9   	|   
+|        ic15       	||  This implementation 	|    84.0   	|     90.1   	|    87.0   	| 
+|        ctw       	||      Paper   	|    84.1   	|     83.7   	|    83.9   	|   
+|        ctw       	||  This implementation 	|    84.0   	|     85.7   	|    84.8   	| 
 
 ## Experiment on IC15 dataset
 ### Data preparing 
@@ -58,11 +65,13 @@ Put the folder in
 ```bash 
    output/.
 ```
-You need to set the resolution to 1200x2000 in ```maskrcnn_benchmark/data/transformstransforms.py``` (line 50 to 52).
+Set the resolution to 1200x2000 in ```maskrcnn_benchmark/data/transformstransforms.py``` (line 50 to 52).
 Then run
 ```bash 
    bash test_contour.sh
 ```
+You can ignore this step when you train yourself, which seems to obtain better results.
+
 ### Evaluate
 Put bo.json to ic15_evaluate/, then run
 ```bash 
@@ -72,21 +81,16 @@ Put bo.json to ic15_evaluate/, then run
    conda install zip
    python2 eval_ic15
 ```
-#### Results on IC15
-|        Model       	| recall 	| precision 	| F-measure 	|
-|:------------------:	|:---------:	|:------:	|:---------:	|
-|      Paper   	|    86.1   	|     87.6   	|    86.9   	|   
-|  This implementation 	|    84.0   	|     90.1   	|    87.0   	| 
 
 ### Train our model on IC15
-As mentioned in our paper, we only use offical training images to train our model, data augmentation includes random crop, rotate etc. There are 2 strategies to initialize the parameters in the backbone:1) use the [ResNet50 model (ImageNet)-BAIDU](https://pan.baidu.com/s/1nYePd4BgsBjhToeD2y1RbQ)(passward:edt8) or [ResNet50 model (ImageNet)-Drive](https://drive.google.com/file/d/1GZRktoRS4hoXmsCrucl3liLyMzl56WK7/view?usp=sharing), this is provided by [Yuliang](https://github.com/Yuliang-Liu/Box_Discretization_Network), which is ONLY an ImageNet Model With a few iterations on ic15 training data for a stable initialization.2) Use model only pre-trained on ImageNet(modify the WEIGHT to ```catalog://ImageNetPretrained/MSRA/R-50``` in ```config/r50_baseline.yaml```). In this repository, we use the first one to train the model on this dataset.
+As mentioned in our paper, we only use offical training images to train our model, data augmentation includes random crop, rotate etc. There are 2 strategies to initialize the parameters in the backbone:1) use the [ResNet50 model (ImageNet)-BAIDU](https://pan.baidu.com/s/1nYePd4BgsBjhToeD2y1RbQ)(passward:edt8) or [ResNet50 model (ImageNet)-Drive](https://drive.google.com/file/d/1GZRktoRS4hoXmsCrucl3liLyMzl56WK7/view?usp=sharing), this is provided by [Yuliang](https://github.com/Yuliang-Liu/Box_Discretization_Network), which is ONLY an ImageNet Model With a few iterations on ic15 training data for a stable initialization.2) Use model only pre-trained on ImageNet(modify the WEIGHT to ```catalog://ImageNetPretrained/MSRA/R-50``` in ```config/ic15/r50_baseline.yaml```). In this repository, we use the first one to train the model on this dataset.
 #### Step 1:
 Run
 ```bash 
    bash train_contour.sh
 ```
 #### Step 2:
-   Change the ROTATE_PROB_TRAIN to 0.3 and ROTATE_DEGREE to 10 in ```config/r50_baseline.yaml``` (corresponding modification also needs to be done in ```maskrcnn_benchmark/data/transformstransforms.py``` from line 312 to 317), then finetune the model for more 10500 steps (lr starts from 2.5e-4 and dot 0.1 when step = [5k,10k]).
+   Change the ROTATE_PROB_TRAIN to 0.3 and ROTATE_DEGREE to 10 in ```config/ic15/r50_baseline.yaml``` (corresponding modification also needs to be done in ```maskrcnn_benchmark/data/transformstransforms.py``` from line 312 to 317), then finetune the model for more 10500 steps (lr starts from 2.5e-4 and dot 0.1 when step = [5k,10k](optional)).
 
 ## Citation
 If you find our method useful for your reserach, please cite
