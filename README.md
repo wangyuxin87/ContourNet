@@ -93,12 +93,16 @@ Run
    Change the ROTATE_PROB_TRAIN to 0.3 and ROTATE_DEGREE to 10 in ```config/ic15/r50_baseline.yaml``` (corresponding modification also needs to be done in ```maskrcnn_benchmark/data/transformstransforms.py``` from line 312 to 317), then finetune the model for more 10500 steps (lr starts from 2.5e-4 and dot 0.1 when step = [5k,10k](optional)).
 
 ## Experiment on CTW dataset
+### Data preparing 
 #### step 1
-   Prepare data follow COCO format or you can download (https://drive.google.com/drive/folders/1vEaYiS7Qxvhj6rdqTOATT-ke86FqGHnF?usp=sharing)
+   Prepare data follow COCO format or you can download (coming soon). Put the folder in 
+```bash 
+   output/.
+```
 #### step 2
    You need to modify ```maskrcnn_benchmark/config/paths_catalog.py``` to point to the location where your dataset is stored.
 ### Test CTW
-#### Test with our [proposed model-Drive](coming soon)
+#### Test with our [proposed model-Drive](https://drive.google.com/drive/folders/1vEaYiS7Qxvhj6rdqTOATT-ke86FqGHnF?usp=sharing)
 Put the folder in 
 ```bash 
    output/.
