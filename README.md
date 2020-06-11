@@ -65,7 +65,7 @@ Put the folder in
 ```bash 
    output/.
 ```
-Set the resolution to 1200x2000 in ```maskrcnn_benchmark/data/transformstransforms.py``` (line 50 to 52). You can ignore this step when you train yourself, which seems to obtain better results. Then run
+Set the resolution to 1200x2000 in ```maskrcnn_benchmark/data/transformstransforms.py``` (line 50 to 52). You can ignore this step when you train your own model, which seems to obtain better results. Then run
 ```bash 
    bash test_contour.sh
 ```
