@@ -65,12 +65,10 @@ Put the folder in
 ```bash 
    output/.
 ```
-Set the resolution to 1200x2000 in ```maskrcnn_benchmark/data/transformstransforms.py``` (line 50 to 52).
-Then run
+Set the resolution to 1200x2000 in ```maskrcnn_benchmark/data/transformstransforms.py``` (line 50 to 52). You can ignore this step when you train yourself, which seems to obtain better results. Then run
 ```bash 
    bash test_contour.sh
 ```
-You can ignore this step when you train yourself, which seems to obtain better results.
 
 ### Evaluate
 Put bo.json to ic15_evaluate/, then run
@@ -92,6 +90,28 @@ Run
 #### Step 2:
    Change the ROTATE_PROB_TRAIN to 0.3 and ROTATE_DEGREE to 10 in ```config/ic15/r50_baseline.yaml``` (corresponding modification also needs to be done in ```maskrcnn_benchmark/data/transformstransforms.py``` from line 312 to 317), then finetune the model for more 10500 steps (lr starts from 2.5e-4 and dot 0.1 when step = [5k,10k](optional)).
 
+## Experiment on CTW dataset
+#### step 1
+   Prepare data follow COCO format or you can download (updating)
+#### step 2
+   You need to modify ```maskrcnn_benchmark/config/paths_catalog.py``` to point to the location where your dataset is stored.
+   
+### Test CTW
+#### Test with our [proposed model-Drive]
+Put the folder in 
+```bash 
+   output/.
+```  
+Then run
+```bash 
+   bash test_contour.sh
+```
+### Train our model on CTW
+Run
+```bash 
+   bash train_contour.sh
+```
+   
 ## Citation
 If you find our method useful for your reserach, please cite
 ```bash 
