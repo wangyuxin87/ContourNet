@@ -2,7 +2,7 @@ import file_util
 import Polygon as plg
 import numpy as np
 
-pred_root = 'path to detection results'
+pred_root = 'path to output detection results'
 gt_root = './ctw_gt/'
 
 def get_pred(path):
