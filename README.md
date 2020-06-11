@@ -92,12 +92,12 @@ Run
 
 ## Experiment on CTW dataset
 #### step 1
-   Prepare data follow COCO format or you can download (updating)
+   Prepare data follow COCO format or you can download (coming soon)
 #### step 2
    You need to modify ```maskrcnn_benchmark/config/paths_catalog.py``` to point to the location where your dataset is stored.
    
 ### Test CTW
-#### Test with our [proposed model-Drive]
+#### Test with our [proposed model-Drive](coming soon)
 Put the folder in 
 ```bash 
    output/.
