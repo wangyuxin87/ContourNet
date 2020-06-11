@@ -17,7 +17,7 @@ This is a pytorch-based implementation for paper [ContourNet](https://arxiv.org/
 
 ## Requirements
 
-We recommend you to use Anaconda [BaiduYun Link](https://pan.baidu.com/s/1_J9INU-UpiT43qormibAuw)(passward:1y3v) or [Geogle Drive](https://drive.google.com/file/d/1H64lTpR3xzlSRfUxfZa4dOhAYZJcO7RU/view?usp=sharing) to manage your libraries.
+We recommend you to use Anaconda [BaiduYun](https://pan.baidu.com/s/1_J9INU-UpiT43qormibAuw)(passward:1y3v) or [Drive](https://drive.google.com/file/d/1H64lTpR3xzlSRfUxfZa4dOhAYZJcO7RU/view?usp=sharing) to manage your libraries.
 
 
 ### Step-by-step install
@@ -51,7 +51,7 @@ We recommend you to use Anaconda [BaiduYun Link](https://pan.baidu.com/s/1_J9INU
 ## Experiment on IC15 dataset
 ### Data preparing 
 #### step 1
-   Prepare data follow COCO format or you can download our [IC15dataset-BAIDU](https://pan.baidu.com/s/1GbF0PnWDKw3qn2o2XgpB7Q) (passward:ect5) or [Geogle Drive](https://drive.google.com/file/d/1ZWRQWJwhydoCsqdNlX80y94cKQedUywO/view?usp=sharing), and unzip it in 
+   Prepare data follow COCO format or you can download our IC15dataset [BAIDU](https://pan.baidu.com/s/1GbF0PnWDKw3qn2o2XgpB7Q) (passward:ect5) or [Geogle Drive](https://drive.google.com/file/d/1ZWRQWJwhydoCsqdNlX80y94cKQedUywO/view?usp=sharing), and unzip it in 
 ```bash
    datasets/.
 ```
