@@ -39,12 +39,12 @@ We recommend you to use Anaconda [BaiduYun Link](https://pan.baidu.com/s/1_J9INU
   python setup.py build develop
 ```
 #### Results
-|        Dataset       	||        Model       	| recall 	| precision 	| F-measure 	|
-|:------------------: ||:------------------:	|:---------:	|:------:	|:---------:	|
-|        ic15       	||      Paper   	|    86.1   	|     87.6   	|    86.9   	|   
-|        ic15       	||  This implementation 	|    84.0   	|     90.1   	|    87.0   	| 
-|        ctw       	||      Paper   	|    84.1   	|     83.7   	|    83.9   	|   
-|        ctw       	||  This implementation 	|    84.0   	|     85.7   	|    84.8   	| 
+|        Dataset       	|        Model       	| recall 	| precision 	| F-measure 	|
+|:------------------: |:------------------:	|:---------:	|:------:	|:---------:	|
+|        ic15       	|      Paper   	|    86.1   	|     87.6   	|    86.9   	|   
+|        ic15       	|  This implementation 	|    84.0   	|     90.1   	|    87.0   	| 
+|        ctw       	|      Paper   	|    84.1   	|     83.7   	|    83.9   	|   
+|        ctw       	|  This implementation 	|    84.0   	|     85.7   	|    84.8   	| 
 
 ## Experiment on IC15 dataset
 ### Data preparing 
