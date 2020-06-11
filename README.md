@@ -111,7 +111,11 @@ Run
 ```bash 
    bash train_contour.sh
 ```
-   
+# Improvement
+1. We use different reconstruction algorithm to rebuild text region from contour points for curved text, you can reproduce our approach used in the paper by modifying the hyper-parameter in Alpha-Shape Algorithm (some tricks also should be added). Furthermore, more robust reconstruction algorithm may obtain better results.
+2. The detection results are not accurate when the proposal contains more than one text, because of that the strong response will be obtained in both contour regions of texts. 
+3. Some morphological algorithms can make the contour line more smooth.
+
 ## Citation
 If you find our method useful for your reserach, please cite
 ```bash 
