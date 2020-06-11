@@ -97,7 +97,7 @@ Run
 ## Experiment on CTW dataset
 ### Data preparing 
 #### step 1
-   Prepare data follow COCO format or you can download our [CTW-dataset](https://drive.google.com/file/d/1YbohYSs4T6yyVMEYCpr18fzKiUWzYVOe/view?usp=sharing). Put the folder in 
+   Prepare data follow COCO format or you can download our [CTW-dataset](https://drive.google.com/file/d/1YbohYSs4T6yyVMEYCpr18fzKiUWzYVOe/view?usp=sharing), and unzip it in
 ```bash 
    output/.
 ```
