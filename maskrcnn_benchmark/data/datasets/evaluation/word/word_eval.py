@@ -182,7 +182,48 @@ def _nms_x(heat, kernel=3):
     keep = (hmax == heat).float()
     return heat * keep
 
-def boundary_to_mask(bo_x, bo_y, name, num):
+def CTW_order_lr(map_in):
+
+    line_out_l2r = []
+    line_out_r2l = []
+
+    map_in = torch.tensor(map_in)
+    value, top = torch.topk(map_in, 2, dim=0)
+    value = value.numpy()
+    top = top.numpy()
+    top_th = np.where(value[1] > 0.1)[0]  # L
+    # print(top_th)
+    if len(top_th) == 0:
+        return []
+    top1 = np.sort(top, axis=0)
+    for i in range(len(top_th)):
+        line_out_l2r.append([top_th[i], top1[0][top_th[i]]])
+        line_out_r2l.append([top_th[i], top1[1][top_th[i]]])
+    line_out = line_out_l2r+line_out_r2l[::-1]
+    # print(line_out)
+    return line_out
+
+def CTW_order_bt(map_in):
+
+    line_out_t2b = []
+    line_out_b2t = []
+
+    map_in = torch.tensor(map_in)
+    value, top = torch.topk(map_in, 2, dim=1)
+    value = value.numpy()
+    top = top.numpy()
+    top_th = np.where(value[:, 1] > 0.1)[0]  # H
+    if len(top_th) == 0:
+        return []
+    top1 = np.sort(top, axis=1)
+    for i in range(len(top_th)):
+        line_out_b2t.append([top1[top_th[i]][0], top_th[i]])
+        line_out_t2b.append([top1[top_th[i]][1], top_th[i]])
+    line_out = line_out_b2t[::-1] + line_out_t2b
+    # print(line_out)
+    return line_out
+
+def boundary_to_mask_ic(bo_x, bo_y, name, num):
 
     # NMS Hmap and Vmap
     Vmap = _nms_x(bo_x, kernel=5)
@@ -240,6 +281,68 @@ def boundary_to_mask(bo_x, bo_y, name, num):
             cv2.fillPoly(img_draw, draw_line, 1)
     return img_draw
 
+def boundary_to_mask_ctw(bo_x,bo_y, name, num, image_name_name,p_temp_box):
+    w_half = (p_temp_box[2] - p_temp_box[0]) * .5
+    h_half = (p_temp_box[3] - p_temp_box[1]) * .5
+    thresh_total = 0.5
+
+    if w_half >= h_half:
+        # point re-scoring
+        bo_x = _nms_x(bo_x, kernel=9)
+        bo_x = bo_x[0]
+        bo_y = bo_y[0]
+        ploys_Alfa_x = bo_x.clone().numpy()
+        ploys_Alfa_y = bo_y.clone().numpy()
+        thresh_x = thresh_total
+        thresh_y = thresh_total
+        ploys_Alfa_x_1 = bo_x.clone().numpy()
+        ploys_Alfa_y_1 = bo_y.clone().numpy()
+        ploys_Alfa__1 = ploys_Alfa_x_1 + ploys_Alfa_y_1
+        ploys_Alfa_x[ploys_Alfa_x < thresh_x] = 0
+        ploys_Alfa_x[ploys_Alfa_x >= thresh_x] = 1
+        ploys_Alfa_y[ploys_Alfa_y < thresh_y] = 0
+        ploys_Alfa_y[ploys_Alfa_y >= thresh_y] = 1
+        ploys_Alfa = ploys_Alfa_x + ploys_Alfa_y
+        ploys_Alfa[ploys_Alfa < 2] = 0
+        ploys_Alfa[ploys_Alfa == 2] = 1
+        ploys_Alfa *= ploys_Alfa__1
+        # rebuild text region from contour points
+        img_draw = np.zeros([ploys_Alfa_y.shape[-1], ploys_Alfa_y.shape[-1]], dtype=np.uint8)
+        if ploys_Alfa.sum() == 0:
+            return img_draw
+        lines = CTW_order_lr(ploys_Alfa)
+    else:
+        bo_y = _nms_y(bo_y,kernel=9)
+        bo_x = bo_x[0]
+        bo_y = bo_y[0]
+        ploys_Alfa_x = bo_x.clone().numpy()
+        ploys_Alfa_y = bo_y.clone().numpy()
+        thresh_x = thresh_total
+        thresh_y = thresh_total
+        ploys_Alfa_x_1 = bo_x.clone().numpy()
+        ploys_Alfa_y_1 = bo_y.clone().numpy()
+        ploys_Alfa__1 = ploys_Alfa_x_1 + ploys_Alfa_y_1
+        ploys_Alfa_x[ploys_Alfa_x < thresh_x] = 0
+        ploys_Alfa_x[ploys_Alfa_x >= thresh_x] = 1
+        ploys_Alfa_y[ploys_Alfa_y < thresh_y] = 0
+        ploys_Alfa_y[ploys_Alfa_y >= thresh_y] = 1
+        ploys_Alfa = ploys_Alfa_x + ploys_Alfa_y
+        ploys_Alfa[ploys_Alfa < 2] = 0
+        ploys_Alfa[ploys_Alfa == 2] = 1
+        ploys_Alfa *= ploys_Alfa__1
+        img_draw = np.zeros([ploys_Alfa_y.shape[-1], ploys_Alfa_y.shape[-1]], dtype=np.uint8)
+        if ploys_Alfa.sum() == 0:
+            return img_draw
+        lines = CTW_order_bt(ploys_Alfa)
+    if len(lines) <=10:
+        return img_draw
+    draw_line = np.array(lines)
+    draw_line = draw_line[np.newaxis, np.newaxis, :, :]
+    cv2.fillPoly(img_draw, draw_line, 1)
+    img_draw = img_draw.astype(np.uint8)
+    kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (5, 5))
+    img_draw = cv2.morphologyEx(img_draw, cv2.MORPH_CLOSE, kernel)
+    return img_draw
 
 def mask_to_roRect(mask, img_shape):
     ## convert mask into rotated rect
@@ -271,14 +374,8 @@ def write_result_as_txt(image_name, bboxes, path):
     filename = io_.join_path(path, '%s.txt' % (image_name))
     lines = []
     for b_idx, bbox in enumerate(bboxes):
-
-        bbox = np.array(bbox)
-
-        line_new = np.zeros_like(bbox)
-        line_new[0::2] = bbox[1::2]
-        line_new[1::2] = bbox[0::2]
-        bbox = line_new
-
+        if len(bbox) < 6:
+            continue
         values = [int(v) for v in bbox]
         # line = "%d, %d, %d, %d, %d, %d, %d, %d\n"%tuple(values)
         line = "%d" % values[0]
@@ -294,11 +391,12 @@ def prepare_for_boundary_segmentation(predictions, dataset):
     import numpy as np
 
     masker = Masker(threshold=0.5, padding=1)
-    # assert isinstance(dataset, COCODataset)
     coco_results = []
 
     for image_id, prediction in tqdm(enumerate(predictions)):
         original_id = dataset.id_to_img_map[image_id]
+        image_name = dataset.coco.imgs[original_id]["file_name"].split('.')[0]
+        im_w_name = dataset.coco.imgs[original_id]["file_name"]
         if len(prediction) == 0:
             continue
 
@@ -309,14 +407,19 @@ def prepare_for_boundary_segmentation(predictions, dataset):
         masks_x = prediction.get_field("mask_x")
         masks_y = prediction.get_field("mask_y")
 
-        print('masks.shape------------------', masks_y.shape)  # [3, 1, 28, 28]
-
-        masks = [boundary_to_mask(mask_x, mask_y, dataset.coco.imgs[original_id]["file_name"], number) for
-                 mask_x, mask_y, number in zip(masks_x, masks_y,
-                                               list(range(masks_x.shape[0])))]
+        if 'ic15' in cfg.DATASETS.TEST[0]:
+            masks = [boundary_to_mask_ic(mask_x, mask_y, dataset.coco.imgs[original_id]["file_name"], number) for
+                     mask_x, mask_y, number in zip(masks_x, masks_y,list(range(masks_x.shape[0])))]
+        elif 'CTW' in cfg.DATASETS.TEST[0]:
+            masks = [boundary_to_mask_ctw(mask_x, mask_y, dataset.coco.imgs[original_id]["file_name"], number, image_name,
+                                      p_temp) for
+                     mask_x, mask_y, number, p_temp in zip(masks_x, masks_y,
+                                                           list(range(masks_x.shape[0])), prediction.bbox)]
+        else:
+            print('Please add your own construction code!')
+            assert 1<0
 
         masks = torch.from_numpy(np.array(masks)[:, np.newaxis, :, :])
-
         # Masker is necessary only if masks haven't been already resized.
         if list(masks.shape[-2:]) != [image_height, image_width]:
             masks = masker(masks.expand(1, -1, -1, -1, -1), prediction)
@@ -324,32 +427,59 @@ def prepare_for_boundary_segmentation(predictions, dataset):
 
         scores = prediction.get_field("scores").tolist()
         labels = prediction.get_field("labels").tolist()
+        if 'ic15' in cfg.DATASETS.TEST[0]:
+            rects = [mask_to_roRect(mask, [image_height, image_width]) for mask in masks]
+        if 'CTW' in cfg.DATASETS.TEST[0]:
+            contours = [mask_to_contours(mask, [image_height, image_width]) for mask in masks]
+            write_result_as_txt(image_name, contours, './output_txt/detection_CTW')
+            # for visualization
+            if cfg.DATASETS.Test_Visual:
+                im_write = cv2.imread(
+                    'path to ctw test image (must same to paths_catalog.py)' + im_w_name)[:, :,::-1]
+                for box in contours:
+                    box = np.array(box)
+                    box = np.around(box).astype(np.int32)
+                    cv2.polylines(im_write[:, :, ::-1], [box.astype(np.int32).reshape((-1, 1, 2))], True, color=(0, 255, 0), thickness=2)  # 0,255,255 y 0,255,0 g
+                cv2.imwrite('path to visualization' + im_w_name,im_write[:, :, ::-1])
 
-        rects = [mask_to_roRect(mask, [image_height, image_width]) for mask in masks]
-        mapped_labels = [dataset.contiguous_category_id_to_json_id[i] for i in labels]
-
-        esd = []
-        for k, rect in enumerate(rects):
-            if rect.all() == 0:
-                continue
+        if 'ic15' in cfg.DATASETS.TEST[0]:
+            mapped_labels = [dataset.contiguous_category_id_to_json_id[i] for i in labels]
+            esd = []
+            for k, rect in enumerate(rects):
+                if rect.all() == 0:
+                    continue
+                else:
+                    esd.append(
+                        {
+                            "image_id": original_id,
+                            "category_id": mapped_labels[k],
+                            "seg_rorect": rect.tolist(),
+                            "score": scores[k],
+                        }
+                    )
+            if cfg.PROCESS.PNMS:
+                pnms_thresh = cfg.PROCESS.NMS_THRESH
+                keep = esd_pnms(esd, pnms_thresh)
+                new_esd = []
+                for i in keep:
+                    new_esd.append(esd[i])
+                coco_results.extend(new_esd)
+                if cfg.DATASETS.Test_Visual:
+                    im_write = cv2.imread(
+                        'path to ic15 test image (must same to paths_catalog.py)' + im_w_name)[
+                               :, :, ::-1]
+                    for i in keep:
+                        box = esd[i]
+                        # print(box)
+                        # assert 1<0
+                        box = np.array(box['seg_rorect'])
+                        box = np.around(box).astype(np.int32)
+                        cv2.polylines(im_write[:, :, ::-1], [box.astype(np.int32).reshape((-1, 1, 2))], True,
+                                      color=(0, 255, 0), thickness=2)  # 0,255,255 y 0,255,0 g
+                    cv2.imwrite('path to visualization' + im_w_name, im_write[:, :, ::-1])
             else:
-                esd.append(
-                    {
-                        "image_id": original_id,
-                        "category_id": mapped_labels[k],
-                        "seg_rorect": rect.tolist(),
-                        "score": scores[k],
-                    }
-                )
-        if cfg.PROCESS.PNMS:
-            pnms_thresh = cfg.PROCESS.NMS_THRESH
-            keep = esd_pnms(esd, pnms_thresh)
-            new_esd = []
-            for i in keep:
-                new_esd.append(esd[i])
-            coco_results.extend(new_esd)
-        else:
-            coco_results.extend(esd)
+                coco_results.extend(esd)
+
 
     return coco_results
 
