@@ -39,7 +39,7 @@ We recommend you to use Anaconda [BaiduYun Link](https://pan.baidu.com/s/1_J9INU
   python setup.py build develop
 ```
 #### Results
-[image](https://github.com/wangyuxin87/ContourNet/blob/master/demo/display.png)
+![image](https://github.com/wangyuxin87/ContourNet/blob/master/demo/display.png)
 
 |        Dataset       	|        Model       	| recall 	| precision 	| F-measure 	|
 |:------------------: |:------------------:	|:---------:	|:------:	|:---------:	|
