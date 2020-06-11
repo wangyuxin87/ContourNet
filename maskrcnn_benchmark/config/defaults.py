@@ -260,7 +260,7 @@ _C.MODEL.ROI_BOUNDARY_HEAD.PREDICTOR = "KERCNNC4Predictor"
 _C.MODEL.ROI_BOUNDARY_HEAD.RESOLUTION = 14
 _C.MODEL.ROI_BOUNDARY_HEAD.SHARE_BOX_FEATURE_EXTRACTOR = True
 _C.MODEL.ROI_BOUNDARY_HEAD.BO_WEIGHT = 1.0
-_C.MODEL.ROI_BOUNDARY_HEAD.Loss_balance = 1.0
+_C.MODEL.ROI_BOUNDARY_HEAD.Loss_balance = 1.2
 
 # ---------------------------------------------------------------------------- #
 # ResNe[X]t options (ResNets = {ResNet, ResNeXt}

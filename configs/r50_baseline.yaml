@@ -35,7 +35,7 @@ MODEL:
     RESOLUTION: 48
     SHARE_BOX_FEATURE_EXTRACTOR: False
     BO_WEIGHT: 0.1
-
+    Loss_balance: 1.0
 
 PROCESS:
   PNMS: True
