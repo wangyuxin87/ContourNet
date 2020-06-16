@@ -43,6 +43,8 @@ We recommend you to use Anaconda [BaiduYun](https://pan.baidu.com/s/1_J9INU-UpiT
 ## Results
 ![image](https://github.com/wangyuxin87/ContourNet/blob/master/demo/display.png)
 
+We use only official training images to training our model.
+
 |        Dataset       	|        Model       	| recall 	| precision 	| F-measure 	|
 |:------------------: |:------------------:	|:---------:	|:------:	|:---------:	|
 |        [ic15](https://rrc.cvc.uab.es/?ch=4)       	|      Paper   	|    86.1   	|     87.6   	|    86.9   	|   
