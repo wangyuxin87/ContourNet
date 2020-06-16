@@ -43,7 +43,7 @@ We recommend you to use Anaconda [BaiduYun](https://pan.baidu.com/s/1_J9INU-UpiT
 ## Results
 ![image](https://github.com/wangyuxin87/ContourNet/blob/master/demo/display.png)
 
-We use only official training images to training our model.
+We use only official training images to train our model.
 
 |        Dataset       	|        Model       	| recall 	| precision 	| F-measure 	|
 |:------------------: |:------------------:	|:---------:	|:------:	|:---------:	|
