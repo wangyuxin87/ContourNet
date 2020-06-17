@@ -13,7 +13,16 @@ class DatasetCatalog(object):
         "ic15_test": (
             "path to /ic15_test_images",
             "path to /ic15_test.json"
+        ),
+         "CTW1500_train": (
+            "path to /ctw_train_images",
+            "path to /ctw_train.json"
+        ),
+        "CTW1500_test": (
+            "path to /ctw_test_images",
+            "path to /ctw_test.json"
         )
+        
 }
 
     @staticmethod

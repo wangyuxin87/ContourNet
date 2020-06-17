@@ -9,15 +9,18 @@ This is a pytorch-based implementation for paper [ContourNet](https://arxiv.org/
 - [x] Trained models
 - [x] Document for testing and training
 - [x] Evaluation
-- [ ] Experiment on more datasets
+- [x] Experiment on more datasets
 - [ ] re-organize and clean the parameters
 
 ## Updates
+```bash
 2020/5/6 We upload the models on Drive.
-
+2020/6/11 We update the experiment for CTW-1500 and further detail some training settings.
+```
 ## Requirements
 
 We recommend you to use Anaconda [BaiduYun Link](https://pan.baidu.com/s/1_J9INU-UpiT43qormibAuw)(passward:1y3v) or [Google Drive](https://drive.google.com/file/d/1H64lTpR3xzlSRfUxfZa4dOhAYZJcO7RU/view?usp=sharing) to manage your libraries.
+
 
 
 ### Step-by-step install
@@ -38,11 +41,23 @@ We recommend you to use Anaconda [BaiduYun Link](https://pan.baidu.com/s/1_J9INU
   cd ContourNet
   python setup.py build develop
 ```
+## Results
+![image](https://github.com/wangyuxin87/ContourNet/blob/master/demo/display.png)
+
+We use only official training images to train our model.
+
+|        Dataset       	|        Model       	| recall 	| precision 	| F-measure 	|
+|:------------------: |:------------------:	|:---------:	|:------:	|:---------:	|
+|        [ic15](https://rrc.cvc.uab.es/?ch=4)       	|      Paper   	|    86.1   	|     87.6   	|    86.9   	|   
+|        [ic15](https://rrc.cvc.uab.es/?ch=4)       	|  This implementation 	|    84.0   	|     90.1   	|    87.0   	| 
+|  [CTW-1500](https://github.com/Yuliang-Liu/Curve-Text-Detector) |      Paper   	|    84.1   	|     83.7   	|    83.9   	|   
+|  [CTW-1500](https://github.com/Yuliang-Liu/Curve-Text-Detector) |  This implementation 	|    84.0   	|     85.7   	|    84.8   	| 
 
 ## Experiment on IC15 dataset
 ### Data preparing 
 #### step 1
    Prepare data follow COCO format or you can download our [IC15dataset-BAIDU](https://pan.baidu.com/s/1GbF0PnWDKw3qn2o2XgpB7Q) (passward:ect5) or [Google Drive](https://drive.google.com/file/d/1ZWRQWJwhydoCsqdNlX80y94cKQedUywO/view?usp=sharing), and unzip it in 
+
 ```bash
    datasets/.
 ```
@@ -50,19 +65,19 @@ We recommend you to use Anaconda [BaiduYun Link](https://pan.baidu.com/s/1_J9INU
 You need to modify ```maskrcnn_benchmark/config/paths_catalog.py``` to point to the location where your dataset is stored.
 
 #### step 3
-Download [ResNet50 model (ImageNet)-BAIDU](https://pan.baidu.com/s/1nYePd4BgsBjhToeD2y1RbQ)(passward:edt8) or [ResNet50 model(ImageNet)-Drive](https://drive.google.com/file/d/1GZRktoRS4hoXmsCrucl3liLyMzl56WK7/view?usp=sharing) and put it in ```ContourNet/```. 
+Download ResNet50 model [BAIDU](https://pan.baidu.com/s/1nYePd4BgsBjhToeD2y1RbQ)(passward:edt8) or [Drive](https://drive.google.com/file/d/1GZRktoRS4hoXmsCrucl3liLyMzl56WK7/view?usp=sharing) and put it in ```ContourNet/```. 
 
 ### Test IC15
-#### Test with our [proposed model-BAIDU](https://pan.baidu.com/s/15xHgwUeMs-EYfHiBvNH0MQ)(password:g49o) or [proposed model-Drive](https://drive.google.com/drive/folders/10iJcEuR90tpkkyoIJ4Zq5r2xjwUWYYbc?usp=sharing)
+#### Test with our proposed model [BAIDU](https://pan.baidu.com/s/15xHgwUeMs-EYfHiBvNH0MQ)(password:g49o) or [Drive](https://drive.google.com/drive/folders/10iJcEuR90tpkkyoIJ4Zq5r2xjwUWYYbc?usp=sharing)
 Put the folder in 
 ```bash 
    output/.
 ```
-You need to set the resolution to 1200x2000 in ```maskrcnn_benchmark/data/transformstransforms.py``` (line 50 to 52).
-Then run
+Set the resolution to 1200x2000 in ```maskrcnn_benchmark/data/transformstransforms.py``` (line 50 to 52). You can ignore this step when you train your own model, which seems to obtain better results. Then run
 ```bash 
    bash test_contour.sh
 ```
+
 ### Evaluate
 Put bo.json to ic15_evaluate/, then run
 ```bash 
@@ -72,21 +87,53 @@ Put bo.json to ic15_evaluate/, then run
    conda install zip
    python2 eval_ic15
 ```
-#### Results on IC15
-|        Model       	| precision 	| recall 	| F-measure 	|
-|:------------------:	|:---------:	|:------:	|:---------:	|
-|      Paper   	|    86.1   	|     87.6   	|    86.9   	|   
-|  This implementation 	|    84.0   	|     90.1   	|    87.0   	| 
 
 ### Train our model on IC15
-As mentioned in our paper, we only use offical training images to train our model, data augmentation includes random crop, rotate etc. There are 2 strategies to initialize the parameters in the backbone:1) use the [ResNet50 model (ImageNet)-BAIDU](https://pan.baidu.com/s/1nYePd4BgsBjhToeD2y1RbQ)(passward:edt8) or [ResNet50 model (ImageNet)-Drive](https://drive.google.com/file/d/1GZRktoRS4hoXmsCrucl3liLyMzl56WK7/view?usp=sharing), this is provided by [Yuliang](https://github.com/Yuliang-Liu/Box_Discretization_Network), which is ONLY an ImageNet Model With a few iterations on ic15 training data for a stable initialization.2) Use model only pre-trained on ImageNet(modify the WEIGHT to ```catalog://ImageNetPretrained/MSRA/R-50``` in ```config/r50_baseline.yaml```). In this repository, we use the first one to train the model on this dataset.
+As mentioned in our paper, we only use offical training images to train our model, data augmentation includes random crop, rotate etc. There are 2 strategies to initialize the parameters in the backbone:1) use the ResNet50 model (ImageNet)[BAIDU](https://pan.baidu.com/s/1nYePd4BgsBjhToeD2y1RbQ)(passward:edt8) or [Drive](https://drive.google.com/file/d/1GZRktoRS4hoXmsCrucl3liLyMzl56WK7/view?usp=sharing), this is provided by [Yuliang](https://github.com/Yuliang-Liu/Box_Discretization_Network), which is ONLY an ImageNet Model With a few iterations on ic15 training data for a stable initialization.2) Use model only pre-trained on ImageNet(modify the WEIGHT to ```catalog://ImageNetPretrained/MSRA/R-50``` in ```config/ic15/r50_baseline.yaml```). In this repository, we use the first one to train the model on this dataset.
 #### Step 1:
 Run
 ```bash 
    bash train_contour.sh
 ```
 #### Step 2:
-   Change the ROTATE_PROB_TRAIN to 0.3 and ROTATE_DEGREE to 10 in ```config/r50_baseline.yaml``` (corresponding modification also needs to be done in ```maskrcnn_benchmark/data/transformstransforms.py``` from line 312 to 317), then finetune the model for more 10500 steps (lr starts from 2.5e-4 and dot 0.1 when step = [5k,10k]).
+   Change the ROTATE_PROB_TRAIN to 0.3 and ROTATE_DEGREE to 10 in ```config/ic15/r50_baseline.yaml``` (corresponding modification also needs to be done in ```maskrcnn_benchmark/data/transformstransforms.py``` from line 312 to 317), then finetune the model for more 10500 steps (lr starts from 2.5e-4 and dot 0.1 when step = [5k,10k](optional)).
+
+## Experiment on CTW dataset
+### Data preparing 
+#### step 1
+   Prepare data follow COCO format or you can download our [CTW-dataset](https://drive.google.com/file/d/1YbohYSs4T6yyVMEYCpr18fzKiUWzYVOe/view?usp=sharing), and unzip it in
+```bash 
+   output/.
+```
+#### step 2
+   You need to modify ```maskrcnn_benchmark/config/paths_catalog.py``` to point to the location where your dataset is stored.
+### Test CTW
+#### Test with our proposed model [Drive](https://drive.google.com/drive/folders/1vEaYiS7Qxvhj6rdqTOATT-ke86FqGHnF?usp=sharing)
+Put the folder in 
+```bash 
+   output/.
+```  
+Then run
+```bash 
+   bash test_contour.sh
+```
+### Evaluate
+Run
+```bash 
+   cd ctw_eval
+   python eval_ctw1500.py
+```
+
+### Train our model on CTW
+Run
+```bash 
+   bash train_contour.sh
+```
+# Improvement
+1. We use different reconstruction algorithm to rebuild text region from contour points for curved text, you can reproduce our approach used in the paper by modifying the hyper-parameter in Alpha-Shape Algorithm (some tricks also should be added). Furthermore, more robust reconstruction algorithm may obtain better results.
+2. The detection results are not accurate when the proposal contains more than one text, because of that the strong response will be obtained in both contour regions of texts. 
+3. Some morphological algorithms can make the contour line more smooth.
+4. More tricks like deformable_conv, deformable_pooling in the box_head, etc. can further improve the detection results.
 
 ## Citation
 If you find our method useful for your reserach, please cite
