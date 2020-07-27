@@ -136,13 +136,14 @@ Run
 ## Citation
 If you find our method useful for your reserach, please cite
 ```bash 
-  @article{wang2020contournet,
+ @inproceedings{wang2020contournet,
   title={ContourNet: Taking a Further Step toward Accurate Arbitrary-shaped Scene Text Detection},
-  author={Wang, Yuxin and Xie, Hongtao and Zha, Zhengjun and Xing, Mengting and Fu, Zilong and Zhang, Yongdong},
-  journal={CVPR},
+  author={Wang, Yuxin and Xie, Hongtao and Zha, Zheng-Jun and Xing, Mengting and Fu, Zilong and Zhang, Yongdong},
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  pages={11753--11762},
   year={2020}
+  }
  ```
-}
 
 ## Feedback
 Suggestions and discussions are greatly welcome. Please contact the authors by sending email to ```wangyx58@mail.ustc.edu.cn```
