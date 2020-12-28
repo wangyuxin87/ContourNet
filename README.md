@@ -16,6 +16,7 @@ This is a pytorch-based implementation for paper [ContourNet](https://arxiv.org/
 ```bash
 2020/5/6 We upload the models on Drive.
 2020/6/11 We update the experiment for CTW-1500 and further detail some training settings.
+2020/12/1 We finished ninth in the [Xunfei Competition](http://challenge.xfyun.cn/topic/info?type=text-detect) with this implementation using only single model testing.
 ```
 ## Requirements
 
