@@ -106,7 +106,7 @@ Run
 #### step 2
    You need to modify ```maskrcnn_benchmark/config/paths_catalog.py``` to point to the location where your dataset is stored.
 ### Test CTW
-#### Test with our proposed model [Drive](https://drive.google.com/drive/folders/1vEaYiS7Qxvhj6rdqTOATT-ke86FqGHnF?usp=sharing)
+#### Test with our proposed model [Baidu](https://pan.baidu.com/s/1J4DIdcdy5i1Y-ksyrh4Aiw)(eih9) or [Drive](https://drive.google.com/drive/folders/1vEaYiS7Qxvhj6rdqTOATT-ke86FqGHnF?usp=sharing)
 Put the folder in 
 ```bash 
    output/.
