@@ -1,4 +1,4 @@
-#!/usr/bin/env pytho
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 from collections import namedtuple
 import rrc_evaluation_funcs

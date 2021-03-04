@@ -3,3 +3,7 @@ yacs
 cython
 matplotlib
 tqdm
+scipy
+shapely
+networkx
+pandas
