@@ -1,4 +1,4 @@
-OUTPUT_DIR: " ./output/ic15"
+OUTPUT_DIR: "./output/ic15"
 MODEL:
   META_ARCHITECTURE: "GeneralizedRCNN"
   WEIGHT: "Res50_imagenet.pth"
