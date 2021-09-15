@@ -17,7 +17,7 @@ This is a pytorch-based implementation for paper [ContourNet](https://arxiv.org/
 2020/5/6 We upload the models on Drive.
 2020/6/11 We update the experiment for CTW-1500 and further detail some training settings.
 2020/12/1 We finished 8th in the Xunfei Competition with this repository using only single model testing.
-2021/7/1 We won the 3rd Place in the [2021 ICDAR Competition](https://icdar2021.poli.br/) using the variant of Contournet.
+2021/7/1 We won the 3rd Place in the 2021 ICDAR Competition(https://icdar2021.poli.br/) using the variant of Contournet.
 ```
 ## Requirements
 
