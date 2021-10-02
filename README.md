@@ -21,19 +21,20 @@ This is a pytorch-based implementation for paper [ContourNet](https://arxiv.org/
 ```
 ## Requirements
 
-We recommend you to use Anaconda [BaiduYun](https://pan.baidu.com/s/1_J9INU-UpiT43qormibAuw)(passward:1y3v) or [Drive](https://drive.google.com/file/d/1H64lTpR3xzlSRfUxfZa4dOhAYZJcO7RU/view?usp=sharing) to manage your libraries.
+We recommend you to use Anaconda [BaiduYun Link](https://pan.baidu.com/s/1_J9INU-UpiT43qormibAuw)(passward:1y3v) or [Google Drive](https://drive.google.com/file/d/1H64lTpR3xzlSRfUxfZa4dOhAYZJcO7RU/view?usp=sharing) to manage your libraries.
+
 
 
 ### Step-by-step install
 
 ```bash
-  conda create --name ContourNet
+  conda create --name ContourNet python=3.6
   conda activate ContourNet
   conda install ipython
   pip install ninja yacs cython matplotlib tqdm scipy shapely networkx pandas
-  conda install pytorch=1.0 torchvision=0.2 cudatoolkit=9.0 -c pytorch
+  conda install pytorch=1.0 torchvision=0.2 cudatoolkit=10.0 -c pytorch
   conda install -c menpo opencv
-  export INSTALL_DIR=$PWDcd $INSTALL_DIR
+  export INSTALL_DIR=$PWD
   git clone https://github.com/cocodataset/cocoapi.git
   cd cocoapi/PythonAPI
   python setup.py build_ext install
@@ -57,7 +58,8 @@ We use only official training images to train our model.
 ## Experiment on IC15 dataset
 ### Data preparing 
 #### step 1
-   Prepare data follow COCO format or you can download our IC15dataset [BAIDU](https://pan.baidu.com/s/1GbF0PnWDKw3qn2o2XgpB7Q) (passward:ect5) or [Geogle Drive](https://drive.google.com/file/d/1ZWRQWJwhydoCsqdNlX80y94cKQedUywO/view?usp=sharing), and unzip it in 
+   Prepare data follow COCO format or you can download our [IC15dataset-BAIDU](https://pan.baidu.com/s/1GbF0PnWDKw3qn2o2XgpB7Q) (passward:ect5) or [Google Drive](https://drive.google.com/file/d/1ZWRQWJwhydoCsqdNlX80y94cKQedUywO/view?usp=sharing), and unzip it in 
+
 ```bash
    datasets/.
 ```
